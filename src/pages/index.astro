@@ -1,63 +1,170 @@
----
----
-
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Inverdale Case</title>
-    <style>
-      body {
-        font-family: sans-serif;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-        background-color: #f8f9fa;
-        color: #333;
-      }
-      h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-      }
-      h2 {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-      }
-      label {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.5rem 0;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <h1>The Inverdale Case</h1>
-      <h2>Objective 1 - Prove Aiden could not have killed Kelly McCloud</h2>
+<head>
+  <meta charset="UTF-8" />
+  <title>The Inverdale Case</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0fa;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
 
-      <form>
-        <label>
-          Jack Witness Statement
-          <input type="checkbox" />
-        </label>
-        <label>
-          Ellie Witness Statement
-          <input type="checkbox" />
-        </label>
-        <label>
-          Megan Witness Statement
-          <input type="checkbox" />
-        </label>
-        <label>
-          Aiden Witness Statement
-          <input type="checkbox" />
-        </label>
-        <label>
-          Autopsy Report
-          <input type="checkbox" />
-        </label>
-        <!-- Add more checkboxes as needed -->
-      </form>
-    </main>
-  </body>
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.3em;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-weight: bold;
+      background-color: #3434ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result, #objective2-result, #final-message {
+      margin-top: 15px;
+      font-size: 1.1em;
+    }
+
+    #objective2, #qr-section, #final-message {
+      display: none;
+      margin-top: 40px;
+    }
+
+    
+    
+  </style>
+</head>
+
+<body>
+  <h1>The Inverdale Case</h1>
+  <h2>Objective 1 - Which pieces of evidence PROVE Aiden could not have killed Kelly McCloud?</h2>
+
+  <form id="evidence-form">
+    <label><input type="checkbox" name="evidence" value="jack-witness" /> Jack Witness Statement</label>
+    <label><input type="checkbox" name="evidence" value="ellie-witness" /> Ellie Witness Statement</label>
+    <label><input type="checkbox" name="evidence" value="megan-witness" /> Megan Witness Statement</label>
+    <label><input type="checkbox" name="evidence" value="aiden-witness" /> Aiden Witness Statement</label>
+    <label><input type="checkbox" name="evidence" value="margret-witness" /> Margret Fraser Witness Statement</label>
+    <label><input type="checkbox" name="evidence" value="james-docherty" /> James Docherty Witness Statement</label>
+    <label><input type="checkbox" name="evidence" value="aidens-jacket" /> Evidence form - Aiden’s Jacket</label>
+    <label><input type="checkbox" name="evidence" value="coded-note" /> Handwritten Coded Message</label>
+    <label><input type="checkbox" name="evidence" value="interview-megan" /> Interview with Megan Simpson</label>
+    <label><input type="checkbox" name="evidence" value="interview-jack" /> Interview with Jack Johnstone</label>
+    <label><input type="checkbox" name="evidence" value="interview-ellie" /> Interview with Ellie McCloud</label>
+    <label><input type="checkbox" name="evidence" value="interview-aiden" /> Interview with Aiden Carter</label>
+    <label><input type="checkbox" name="evidence" value="autopsy" /> Autopsy Report</label>
+    <label><input type="checkbox" name="evidence" value="highland-news" /> Highland News Article</label>
+    <label><input type="checkbox" name="evidence" value="map" /> Inverdale Map</label>
+
+    <button type="button" onclick="checkAnswer()">Submit</button>
+    <p id="result"></p>
+  </form>
+
+  <div id="qr-section">
+    <h2>You may now proceed to Objective 2 - Find the real killer</h2>
+    <p>Great work in proving Mr Carter's innocence Detective! You've made sure an innocent man was not falsely convicted.</p>
+    <p>Now we need to figure out who the real killer is!</p>
+    <p>Fortunately, we have recovered the victim's phone from near the crime scene. It's water damaged, but we’ve managed to restore some key functions. You’ll need to search relevant terms inside message chains to find the truth.</p>
+    <p>When you think you know who killed Kelly, let me know and we can put the case to bed for good.</p>
+    <div class="qr-placeholder">
+  <img src="/images/qr.png" alt="QR code to download phone evidence" width="200" height="200" />
+</div>
+  </div>
+
+  <div id="objective2">
+    <h2>Objective 2 - Who killed Kelly McCloud?</h2>
+    <form id="killer-form">
+      <label><input type="radio" name="killer" value="jack" /> Jack Johnstone</label>
+      <label><input type="radio" name="killer" value="ellie" /> Ellie McCloud</label>
+      <label><input type="radio" name="killer" value="megan" /> Megan Simpson</label>
+      <label><input type="radio" name="killer" value="liam" /> Liam Kilbride</label>
+      <label><input type="radio" name="killer" value="james" /> James Docherty</label>
+      <label><input type="radio" name="killer" value="margret" /> Margret Fraser</label>
+      <button type="button" onclick="checkKiller()">Submit</button>
+      <p id="objective2-result"></p>
+    </form>
+  </div>
+
+  <div id="final-message">
+    <p><strong>Well done Detective, you've solved the case.</strong></p>
+    <p>After you pointed the finger at Liam Kilbride, we brought him in for an interview and he confessed to killing Kelly.</p>
+    <p>She had been investigating the drug trade in Inverdale which led her to suspect Mr. Kilbride was heavily involved. She followed him to Derek's bar on Saturday night after receiving a tip from her sister Ellie that Liam was going to meet a contact.</p>
+    <p>She captured a video of the deal going down but was spotted by Liam, who followed her home. He confronted her on the bridge. When Kelly refused to delete the video, Liam tried to snatch the phone from her and accidentally pushed her into the water.</p>
+    <p>Once again, great work solving this case detective. You'll get a promotion in no time!</p>
+    <p>Det. Mark Mullens.</p>
+    <p><em>P.S. I'm having a blast on my holidays. Did you know they deep-fry everything in Blackpool? Even the salad!</em></p>
+  </div>
+
+  <script is:script>
+    function checkAnswer() {
+      const selected = Array.from(document.querySelectorAll('input[name="evidence"]:checked')).map(el => el.value);
+      const required = "aidens-jacket";
+      const validOthers = ["interview-jack", "james-docherty", "highland-news"];
+
+      const hasRequired = selected.includes(required);
+      const hasValidCombo = validOthers.some(item => selected.includes(item));
+
+      if (hasRequired && hasValidCombo) {
+        document.getElementById("result").textContent =
+          "✅ That's correct, Aiden couldn't possibly have killed Kelly. His jacket was noted as being dry despite there being heavy rain at midnight on the night of the murder. Therefore he could not have been outside at the time of the murder.\n\nCongratulations Detective!";
+        document.getElementById("result").style.color = "green";
+
+        // Show QR and Objective 2
+        document.getElementById("qr-section").style.display = "block";
+        document.getElementById("objective2").style.display = "block";
+      } else {
+        document.getElementById("result").textContent =
+          "❌ That's not the correct combination. Take a closer look at what was happening at the time of the murder. Go over all EVIDENCE thoroughly, the answer is in there somewhere.";
+        document.getElementById("result").style.color = "red";
+      }
+    }
+
+    function checkKiller() {
+      const selected = document.querySelector('input[name="killer"]:checked');
+      if (!selected) {
+        document.getElementById("objective2-result").textContent = "❗ Please select a suspect.";
+        return;
+      }
+
+      if (selected.value === "liam") {
+        document.getElementById("objective2-result").textContent = "";
+        document.getElementById("objective2").style.display = "none";
+        document.getElementById("final-message").style.display = "block";
+      } else {
+        document.getElementById("objective2-result").textContent =
+          "❌ That’s not correct. Are you sure you’ve uncovered all the clues?";
+        document.getElementById("objective2-result").style.color = "red";
+      }
+    }
+  </script>
+</body>
 </html>
